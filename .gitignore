@@ -1,0 +1,6 @@
+/*.suo
+*.user
+/Palmmedia.SimpleCrawler/bin/*
+/Palmmedia.SimpleCrawler/obj/*
+/Palmmedia.SimpleCrawler.Test/bin/*
+/Palmmedia.SimpleCrawler.Test/obj/*
