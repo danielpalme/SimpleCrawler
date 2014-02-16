@@ -64,7 +64,7 @@ namespace Palmmedia.SimpleCrawler
                     }
 
                 }
-               
+
             }
         }
 
@@ -129,7 +129,7 @@ namespace Palmmedia.SimpleCrawler
             {
                 string relativePath = relativePath = new Uri(relativeTo).MakeRelativeUri(new Uri(this.Uri)).OriginalString;
 
-                Match match = Regex.Match(relativePath, @"^(?<path>.*?)(?<extension>\.[^\.]*)?(?<querystring>\?.*)$");
+                Match match = Regex.Match(relativePath, @"^(?<path>.*?)(?<extension>\.[^\.]*?)?(?<querystring>\?.*?)?(?<anchor>#.*)?$");
                 if (match.Success)
                 {
                     relativePath = string.Format(

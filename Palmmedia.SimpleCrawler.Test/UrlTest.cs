@@ -154,6 +154,14 @@ namespace Palmmedia.SimpleCrawler.Test
         }
 
         [TestMethod]
+        public void RelativePath_RelativeUrlWithAnchor_CorrectPathReturned()
+        {
+            var url = new Url("http://localhost/subdirectory", "Images/test.png#Anchor");
+
+            Assert.AreEqual("Images/test.png", url.RelativePath);
+        }
+
+        [TestMethod]
         public void PathRelativeToHost_RelativeUrl_CorrectPathReturned()
         {
             var url = new Url("http://localhost/subdirectory", "Images/test.png");
