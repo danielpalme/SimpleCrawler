@@ -12,8 +12,6 @@ namespace Palmmedia.SimpleCrawler.ElementProcessing
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(" Failed to process: " + this.exception.Message);
             Console.ForegroundColor = inititialColor;
-
-            Console.ReadKey();
         }
 
         public ErrorProcessor(Url url, Action<Url> actionOnNewUrl, Exception exception)

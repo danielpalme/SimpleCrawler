@@ -76,7 +76,7 @@ namespace Palmmedia.SimpleCrawler
         {
             get
             {
-                return this.GetRelativeUrl(this.relativeHost ?? this.Host);
+                return this.GetRelativeUrl(this.relativeHost ?? this.Host, true);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Palmmedia.SimpleCrawler
         {
             get
             {
-                return this.GetRelativeUrl(this.Host);
+                return this.GetRelativeUrl(this.Host, false);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Palmmedia.SimpleCrawler
             return this.Uri;
         }
 
-        private string GetRelativeUrl(string relativeTo)
+        private string GetRelativeUrl(string relativeTo, bool includeAnchor)
         {
             if (this.externalUrl || this.invalidUrl)
             {
@@ -133,10 +133,11 @@ namespace Palmmedia.SimpleCrawler
                 if (match.Success)
                 {
                     relativePath = string.Format(
-                        "{0}{1}{2}",
+                        "{0}{1}{2}{3}",
                         match.Groups["path"].Value,
                         Regex.Replace(match.Groups["querystring"].Value, @"[^\w]", m => "_"),
-                        match.Groups["extension"].Value);
+                        match.Groups["extension"].Value,
+                        includeAnchor ? match.Groups["anchor"].Value : string.Empty);
                 }
 
                 return relativePath;
