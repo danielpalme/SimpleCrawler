@@ -18,12 +18,12 @@ namespace Palmmedia.SimpleCrawler
         {
             if (host == null)
             {
-                throw new ArgumentNullException("host");
+                throw new ArgumentNullException(nameof(host));
             }
 
             if (uri == null)
             {
-                throw new ArgumentNullException("uri");
+                throw new ArgumentNullException(nameof(uri));
             }
 
             this.Host = host.TrimEnd('/') + "/";
@@ -68,39 +68,18 @@ namespace Palmmedia.SimpleCrawler
             }
         }
 
-        public string Host { get; private set; }
+        public string Host { get; }
 
-        public string Uri { get; private set; }
+        public string Uri { get; }
 
-        public string RelativePath
-        {
-            get
-            {
-                return this.GetRelativeUrl(this.relativeHost ?? this.Host, true);
-            }
-        }
+        public string RelativePath => this.GetRelativeUrl(this.relativeHost ?? this.Host, true);
 
-        public string PathRelativeToHost
-        {
-            get
-            {
-                return this.GetRelativeUrl(this.Host, false);
-            }
-        }
+        public string PathRelativeToHost => this.GetRelativeUrl(this.Host, false);
 
-        public bool EligibleForCrawling
-        {
-            get
-            {
-                return !this.invalidUrl
-                    && !this.externalUrl;
-            }
-        }
+        public bool EligibleForCrawling => !this.invalidUrl
+    && !this.externalUrl;
 
-        public override int GetHashCode()
-        {
-            return this.Uri.ToLowerInvariant().GetHashCode();
-        }
+        public override int GetHashCode() => this.Uri.ToLowerInvariant().GetHashCode();
 
         public override bool Equals(object obj)
         {
@@ -114,10 +93,7 @@ namespace Palmmedia.SimpleCrawler
             return other != null && this.Uri.Equals(other.Uri, StringComparison.OrdinalIgnoreCase);
         }
 
-        public override string ToString()
-        {
-            return this.Uri;
-        }
+        public override string ToString() => this.Uri;
 
         private string GetRelativeUrl(string relativeTo, bool includeAnchor)
         {

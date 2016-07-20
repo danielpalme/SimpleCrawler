@@ -18,12 +18,12 @@ namespace Palmmedia.SimpleCrawler
         {
             if (baseUri == null)
             {
-                throw new ArgumentNullException("baseUri");
+                throw new ArgumentNullException(nameof(baseUri));
             }
 
             if (targetDirectory == null)
             {
-                throw new ArgumentNullException("targetDirectory");
+                throw new ArgumentNullException(nameof(targetDirectory));
             }
 
             string host = baseUri.Substring(0, baseUri.LastIndexOf('/') + 1);

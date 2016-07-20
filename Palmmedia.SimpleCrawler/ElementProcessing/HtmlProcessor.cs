@@ -27,9 +27,19 @@ namespace Palmmedia.SimpleCrawler.ElementProcessing
 
         private string CreateRelativeUrl(Match match)
         {
-            Url url = new Url(this.Url.Host, match.Groups["url"].Value);
-            this.ActionOnNewUrl(url);
-            return match.Groups["start"] + url.RelativePath;
+            string urlText = match.Groups["url"].Value;
+
+            if (urlText.StartsWith("mailto:", System.StringComparison.OrdinalIgnoreCase)
+                || urlText.StartsWith("tel:", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return match.Groups[0].Value;
+            }
+            else
+            {
+                Url url = new Url(this.Url.Host, urlText);
+                this.ActionOnNewUrl(url);
+                return match.Groups["start"] + url.RelativePath;
+            }
         }
     }
 }

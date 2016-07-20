@@ -10,12 +10,12 @@ namespace Palmmedia.SimpleCrawler.ElementProcessing
         {
             if (url == null)
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             if (actionOnNewUrl == null)
             {
-                throw new ArgumentNullException("actionOnNewUrl");
+                throw new ArgumentNullException(nameof(actionOnNewUrl));
             }
 
             this.Url = url;
@@ -27,25 +27,19 @@ namespace Palmmedia.SimpleCrawler.ElementProcessing
         {
             if (data == null)
             {
-                throw new ArgumentNullException("data");
+                throw new ArgumentNullException(nameof(data));
             }
 
             this.Data = data;
         }
 
-        protected byte[] Data { get; private set; }
+        protected byte[] Data { get; }
 
-        protected string Text 
-        {
-            get
-            {
-                return Encoding.UTF8.GetString(this.Data);
-            }
-        }
+        protected string Text => Encoding.UTF8.GetString(this.Data);
 
-        protected Url Url { get; private set; }
+        protected Url Url { get; }
 
-        protected Action<Url> ActionOnNewUrl { get; private set; }
+        protected Action<Url> ActionOnNewUrl { get; }
 
         public abstract void Process(string targetDirectory);
 
